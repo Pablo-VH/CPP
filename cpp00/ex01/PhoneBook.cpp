@@ -12,6 +12,15 @@
 
 #include "PhoneBook.hpp"
 
+int	PhoneBook::check_input(std::string input)
+{
+	size_t		i;
+	int			number;
+	std::string	search_index;
+
+	i = 0;
+}
+
 PhoneBook::PhoneBook(void)
 {
 	this->n_contact = 0;

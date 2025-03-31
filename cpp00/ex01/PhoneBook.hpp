@@ -13,9 +13,9 @@
 #ifndef PHONEBOOK_HPP
 # define PHONEBOOK_HPP
 
-#include <iostream>
-#include <iomanip>
-#include <string>
+# include <iostream>
+# include <iomanip>
+# include <string.h>
 
 class Contact
 {
@@ -29,8 +29,8 @@ class Contact
 	public:
 		Contact(void);
 		~Contact(void);
-		int	add_contact(int *number);
-		int	check_phone(const char *n_contact);
+		int		add_contact(int *number);
+		int		check_phone(const char *n_contact);
 		void	print_contact(int i);
 		void	print_all(void);
 		void	print_col(std::string str, int len_str);
