@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pavicent <pavicent@student.42madrid>       +#+  +:+       +#+        */
+/*   By: pavicent <pavicent@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 11:46:44 by pavicent          #+#    #+#             */
-/*   Updated: 2025/03/17 11:46:46 by pavicent         ###   ########.fr       */
+/*   Updated: 2025/04/01 13:56:04 by pavicent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	Contact::check_phone(const char *n_contact)
 	i = 0;
 	while (n_contact[i])
 	{
-		if (n_contact[i] < 0 || n_contact[i] > 9)
+		if (n_contact[i] < '0' || n_contact[i] > '9')
 		{
 			std::cout << "Invald number" << std::endl;
 			return (1);
@@ -92,7 +92,7 @@ int	Contact::add_contact(int *number)
 	i = 0;
 	while (i < 5)
 	{
-		std::cout << ": ";
+		std::cout << types[i] << ": ";
 		std::getline(std::cin, input[i]);
 		if (std::cin.eof())
 		{
@@ -110,9 +110,10 @@ int	Contact::add_contact(int *number)
 			if (check_phone(input[i].c_str()) == 1)
 			{
 				(*number)--;
-				return (1);
+				return (0);
 			}
 		}
+		i++;
 	}
 	this->first_name = input[0];
 	this->last_name = input[1];
@@ -131,8 +132,10 @@ void	Contact::set_info(std::string first_name, std::string last_name, std::strin
 }
 Contact::Contact(void)
 {
+	std::cout << "Contact constructor" << std::endl;
 }
 
 Contact::~Contact(void)
 {
+	std::cout << "Contact destructor" << std::endl;
 }
