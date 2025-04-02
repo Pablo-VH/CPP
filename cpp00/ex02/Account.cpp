@@ -7,10 +7,34 @@
 #include <string.h>
 #include <ctime>
 
-static int	_nbAccounts = 0;
-static int	_totalAmount = 0;
-static int	_totalNbDeposits = 0;
-static int	_totalNbWithdrawals = 0;
+int	Account::_nbAccounts = 0;
+int	Account::_totalAmount = 0;
+int	Account::_totalNbDeposits = 0;
+int	Account::_totalNbWithdrawals = 0;
+
+int	Account::getNbAccounts(void)
+{
+	std::cout << "getNbAccounts" << std::endl;
+	return (_nbAccounts);
+}
+
+int	Account::getNbDeposits(void)
+{
+	std::cout << "getNbDeposits" << std::endl;
+	return (_totalNbDeposits);
+}
+
+int	Account::getNbWithdrawals(void)
+{
+	std::cout << "getNbWithdrawals" << std::endl;
+	return (_totalNbWithdrawals);
+}
+
+int	Account::getTotalAmount(void)
+{
+	std::cout << "getTotalAmount" << std::endl;
+	return (_totalAmount);
+}
 
 void	Account::displayAccountsInfos(void)
 {
@@ -32,12 +56,29 @@ void	Account::displayStatus(void)const
 
 int	Account::checkAmount(void)const
 {
-	return(0);
+	std::cout << "checkAmount" << std::endl;
+	return(_totalAmount);
 }
 
 bool	Account::makeWithdrawal(int withdrawal)
 {
-	return(0);
+	_displayTimestamp();
+	std::cout << "index:" << _accountIndex << ";";
+	std::cout << "p_amount" << _amount << ";";
+	std::cout << "withdrawal:";
+	if (withdrawal > _amount)
+	{
+		std::cout << "refused" << std::endl;
+		return (false);
+	}
+	_amount -= withdrawal;
+	_totalAmount -= withdrawal;
+	_nbWithdrawals++;
+	_totalNbWithdrawals++;
+	std::cout << withdrawal << ";";
+	std::cout << "amount:" << _amount << ";";
+	std::cout << "nb_withdrawals" << _nbWithdrawals << std::endl;
+	return (true);
 }
 
 void	Account::makeDeposit(int deposit)
