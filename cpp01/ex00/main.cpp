@@ -10,7 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Zombie.hpp"
+
 int	main(void)
 {
+	Zombie	*new_Zombie;
 	
+	new_Zombie = newZombie("Foo");
+	new_Zombie->announce();
+	delete(new_Zombie);
+	randomChump("Victor");
+	return (0);
 }
