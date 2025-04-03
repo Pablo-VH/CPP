@@ -99,9 +99,14 @@ void	Account::makeDeposit(int deposit)
 
 void	Account::_displayTimestamp(void)
 {
-	time_t	timestamp;
+	time_t		timestamp;
+	struct tm	*timeinfo;
+	char		buffer[20];
+	
 	time(&timestamp);
-	std::cout << "[" << ctime(&timestamp) << "] ";
+	timeinfo = localtime(&timestamp);
+	strftime(buffer, 20, "[%Y%m%d_%H%M%S]", timeinfo);
+	std::cout << buffer;
 }
 
 Account::Account(int initial_deposit)
