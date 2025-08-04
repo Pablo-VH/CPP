@@ -23,22 +23,17 @@ void	Contact::print_all(void)
 
 void	Contact::print_col(std::string str, int len_str)
 {
-	int	spaces;
 	int	j;
-	int	i;
 
-	i = 0;
 	j = 0;
-	spaces = 10 - len_str;
-	while (i < spaces)
-	{
-		std::cout << " ";
-		i++;
-	}
-	while (j < 9 && j < len_str)
-		std::cout << str[j++];
 	if (len_str >= 10)
+	{
+		while (j < 9 && j < len_str)
+			std::cout << str[j++];
 		std::cout << ".";
+	}
+	else
+		std::cout << std::setw(10) << str;
 }
 
 void	Contact::print_contact(int i)
@@ -61,7 +56,7 @@ int	Contact::check_phone(const char *n_contact)
 
 	if (strlen(n_contact) != 9)
 	{
-		std::cout << "Invald number" << std::endl;
+		std::cout << "Invalid number" << std::endl;
 		return (1);
 	}
 	i = 0;
@@ -69,7 +64,7 @@ int	Contact::check_phone(const char *n_contact)
 	{
 		if (n_contact[i] < '0' || n_contact[i] > '9')
 		{
-			std::cout << "Invald number" << std::endl;
+			std::cout << "Invalid number" << std::endl;
 			return (1);
 		}
 		i++;
@@ -122,14 +117,6 @@ int	Contact::add_contact(int *number)
 	return (0);
 }
 
-void	Contact::set_info(std::string first_name, std::string last_name, std::string nickname, long phone_number, std::string dark_secret)
-{
-	this->first_name = first_name;
-	this->last_name = last_name;
-	this->nickname = nickname;
-	this->phone_number = phone_number;
-	this->dark_secret = dark_secret;
-}
 Contact::Contact(void)
 {
 	std::cout << "Contact constructor" << std::endl;

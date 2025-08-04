@@ -23,13 +23,13 @@
 
 class PhoneBook
 {
-private:
-	Contact	person[8];
-public:
-	int	n_contact;
-	PhoneBook(void);
-	~PhoneBook(void);
-	int	check_input(std::string input);
+	private:
+		Contact	person[8];
+	public:
+		int	n_contact;
+		PhoneBook(void);
+		~PhoneBook(void);
+		int	check_input(std::string input);
 };
 
 
