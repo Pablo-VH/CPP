@@ -5,17 +5,13 @@
 
 class HumanB
 {
-private:
-	/* data */
-public:
-	HumanB(/* args */);
-	~HumanB();
+	private:
+		std::string	_name;
+		Weapon		*_weapon;
+	public:
+		HumanB(std::string name);
+		~HumanB(void);
+		void	attack(void);
+		void	setWeapon(Weapon &club);
 };
 
-HumanB::HumanB(void)
-{
-}
-
-HumanB::~HumanB(void)
-{
-}
