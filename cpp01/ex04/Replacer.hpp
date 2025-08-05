@@ -10,7 +10,7 @@ class Replacer
 		std::string	_s2;
 		std::string	_filename;
 
-		std::string	rplaceAll(const std::string &line);
+		std::string	replaceAll(const std::string &line);
 	public:
 		Replacer(const std::string &filename, const std::string &s1, const std::string &s2);
 		bool process(void);
