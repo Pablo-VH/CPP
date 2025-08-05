@@ -50,7 +50,5 @@ std::string	Replacer::replaceAll(const std::string &line)
 		pos = found + _s1.length();
 	}
 	result += line.substr(pos);
-	/*if (result.empty())
-		return (line);*/
 	return (result);
 }
