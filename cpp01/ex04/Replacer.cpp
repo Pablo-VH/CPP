@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Replacer.cpp                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pavicent <pavicent@student.42madrid>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/08/25 18:20:00 by pavicent          #+#    #+#             */
+/*   Updated: 2025/08/25 18:20:01 by pavicent         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Replacer.hpp"
 
 Replacer::Replacer(const std::string &filename, const std::string &s1, const std::string &s2) : _s1(s1), _s2(s2), _filename(filename)
