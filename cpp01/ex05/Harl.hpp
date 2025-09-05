@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#ifndef HARL_HPP_
+#define HARL_HPP_
 
 # include <iostream>
 # include <fstream>
@@ -28,3 +29,4 @@ class Harl
 		~Harl( void );
 };
 
+#endif
