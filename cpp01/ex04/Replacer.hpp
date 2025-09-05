@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#ifndef REPLACER_HPP_
+#define REPLACER_HPP_
 
 # include <iostream>
 # include <fstream>
@@ -29,3 +30,4 @@ class Replacer
 		~Replacer(void);
 };
 
+#endif
