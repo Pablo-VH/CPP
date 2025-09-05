@@ -10,10 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#ifndef WEAPON_HPP_
+#define WEAPON_HPP_
 
 # include <iostream>
-
 
 class Weapon
 {
@@ -25,3 +25,5 @@ public:
 	Weapon(std::string type);
 	~Weapon();
 };
+
+#endif

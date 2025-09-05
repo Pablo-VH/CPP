@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#ifndef HUMANA_HPP_
+#define HUMANA_HPP_
+
 # include <iostream>
 # include "Weapon.hpp"
 
@@ -24,3 +26,5 @@ public:
 	~HumanA(void);
 	void	attack(void);
 };
+
+#endif

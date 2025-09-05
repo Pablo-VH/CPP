@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#ifndef HUMANB_HPP_
+#define HUMANB_HPP_
 
 # include <iostream>
 # include "Weapon.hpp"
@@ -27,3 +28,4 @@ class HumanB
 		void	setWeapon(Weapon &club);
 };
 
+#endif
