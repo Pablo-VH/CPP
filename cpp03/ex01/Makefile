@@ -1,4 +1,4 @@
-NAME = ClapTrap
+NAME = ScavTrap
 
 CXX = c++
 
