@@ -41,6 +41,6 @@ int main(void)
     ct2.attack("Jack");       // Rose intenta atacar sin vida
     ct2.beRepaired(5);        // Rose intenta curarse sin vida
 
-    std::cout << "\n=== Fin del programa ===" << std::endl;
+    std::cout << "\n=== Fin del programa ===\n" << std::endl;
     return 0;
 }

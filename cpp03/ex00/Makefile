@@ -1,4 +1,4 @@
-NAME = open
+NAME = ClapTrap
 
 CXX = c++
 
