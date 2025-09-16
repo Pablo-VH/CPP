@@ -12,6 +12,7 @@
 
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 #include <iostream>
 
 int main()
@@ -24,10 +25,17 @@ int main()
 
     std::cout << "\n=== Creando ScavTrap ===" << std::endl;
     ScavTrap scav("SCAVVY");
-    scav.attack("Enemy2");  // Usa versión de ScavTrap
+    scav.attack("Enemy2");
     scav.takeDamage(20);
     scav.beRepaired(10);
-    scav.guardGate();       // Método exclusivo de ScavTrap
+    scav.guardGate();
+
+    std::cout << "\n=== Creando FragTrap ===" << std::endl;
+    FragTrap frag("FRAGGY");
+    frag.attack("Enemy3");
+    frag.takeDamage(15);
+    frag.beRepaired(5);
+    frag.highFivesGuys();
 
     std::cout << "\n=== Fin del programa ===" << std::endl;
     return 0;

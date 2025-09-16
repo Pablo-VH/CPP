@@ -19,12 +19,12 @@ ClapTrap::ClapTrap(void)
 
 ClapTrap::ClapTrap(std::string name) : _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
-	std::cout << "ClapTrap Constructor called" << std::endl;
+	std::cout << "ClapTrap Constructor called for " << this->_name << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap& other) : _name(other._name), _hitPoints(other._hitPoints), _energyPoints(other._energyPoints), _attackDamage(other._attackDamage)
 {
-	std::cout << "ClapTrap Copy constructor called" << std::endl;
+	std::cout << "ClapTrap Copy constructor called " << this->_name << std::endl;
 }
 
 ClapTrap& ClapTrap::operator=(const ClapTrap& other)
@@ -94,5 +94,5 @@ void	ClapTrap::beRepaired(unsigned int amount)
 
 ClapTrap::~ClapTrap(void)
 {
-	std::cout << "Destructor called" << std::endl;
+	std::cout << "Destructor called for " << this->_name << std::endl;
 }
