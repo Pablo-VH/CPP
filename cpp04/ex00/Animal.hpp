@@ -2,6 +2,7 @@
 #define ANIMAL_HPP_
 
 # include <iostream>
+# include <string>
 
 class Animal
 {
@@ -13,6 +14,8 @@ class Animal
 		Animal(const Animal& other);
 		Animal& operator=(const Animal& other);
 		~Animal(void);
+		void	getType();
+		void	makeSound();
 };
 
 
