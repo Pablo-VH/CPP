@@ -35,11 +35,3 @@ std::string	Animal::getType() const
 {
 	return(_type);
 }
-
-/*void	Animal::setType(std::string type)
-{
-	if (type == "Dog" || type == "Cat")
-		this->_type = type;
-	else
-		this->_type = "Wrong"
-}*/
