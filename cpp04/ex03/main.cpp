@@ -24,7 +24,7 @@ src->learnMateria(new Ice());
 src->learnMateria(new Cure());
 src->learnMateria(new Ice());  // Repetida, debe seguir aprendiendo
 src->learnMateria(new Cure());
-src->learnMateria(new Ice());  // Esta debería ser ignorada (ya hay 4)
+src->learnMateria(new Ice());
 
 std::cout << "\n=== CREANDO PERSONAJES ===" << std::endl;
 ICharacter* me = new Character("me");
@@ -62,9 +62,6 @@ Character clone(*(Character*)me);
 std::cout << "Usando materias del clon sobre 'bob'...\n";
 clone.use(0, *bob);
 clone.use(2, *bob);
-
-std::cout << "\nModificando una materia en el clon (deep copy check)..." << std::endl;
-// (Aquí podrías comprobar direcciones de memoria o diferenciar materias si lo implementas)
 
 std::cout << "\n=== BORRANDO PERSONAJES Y SOURCE ===" << std::endl;
 delete bob;
