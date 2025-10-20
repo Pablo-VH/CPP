@@ -10,4 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef ICE_HPP_
+#define ICE_HPP_
 
+# include "AMateria.hpp"
+# include "ICharacter.hpp"
+
+class Ice : public AMateria
+{
+	public:
+		Ice(void);
+		Ice(const Ice& other);
+		Ice& operator=(const Ice& other);
+		~Ice(void);
+
+		AMateria* clone() const;
+		void use(ICharacter& target);
+};
+
+#endif

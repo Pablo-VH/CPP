@@ -1,31 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cure.hpp                                           :+:      :+:    :+:   */
+/*   IMateriaSource.cpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pavicent <pavicent@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/25 15:05:26 by pavicent          #+#    #+#             */
-/*   Updated: 2025/09/25 15:05:27 by pavicent         ###   ########.fr       */
+/*   Created: 2025/10/16 09:52:49 by pavicent          #+#    #+#             */
+/*   Updated: 2025/10/16 09:52:52 by pavicent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CURE_HPP_
-#define CURE_HPP_
+#include "IMateriaSource.hpp"
 
-# include "AMateria.hpp"
-# include "ICharacter.hpp"
-
-class Cure : public AMateria
+IMateriaSource::~IMateriaSource(void)
 {
-	public:
-		Cure(void);
-		Cure(const Cure& other);
-		Cure& operator=(const Cure& other);
-		~Cure(void);
-
-		AMateria* clone(void) const;
-		void use(ICharacter& target);
-};
-
-#endif
+}

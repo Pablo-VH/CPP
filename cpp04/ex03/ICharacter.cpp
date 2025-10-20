@@ -1,31 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cure.hpp                                           :+:      :+:    :+:   */
+/*   ICharacter.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pavicent <pavicent@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/25 15:05:26 by pavicent          #+#    #+#             */
-/*   Updated: 2025/09/25 15:05:27 by pavicent         ###   ########.fr       */
+/*   Created: 2025/10/16 09:53:17 by pavicent          #+#    #+#             */
+/*   Updated: 2025/10/16 09:53:19 by pavicent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CURE_HPP_
-#define CURE_HPP_
 
-# include "AMateria.hpp"
-# include "ICharacter.hpp"
-
-class Cure : public AMateria
-{
-	public:
-		Cure(void);
-		Cure(const Cure& other);
-		Cure& operator=(const Cure& other);
-		~Cure(void);
-
-		AMateria* clone(void) const;
-		void use(ICharacter& target);
-};
-
-#endif
