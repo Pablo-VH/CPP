@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-ifndef ANIMAL_HPP_
+#ifndef ANIMAL_HPP_
 #define ANIMAL_HPP_
 
 # include <iostream>
