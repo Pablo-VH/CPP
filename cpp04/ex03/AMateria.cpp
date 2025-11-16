@@ -35,7 +35,8 @@ AMateria::~AMateria(void)
 {
 }
 
-std::string const & AMateria::getType() const {
+std::string const & AMateria::getType() const
+{
 	return this->_type;
 }
 
