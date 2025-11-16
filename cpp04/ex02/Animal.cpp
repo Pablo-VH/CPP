@@ -38,11 +38,6 @@ AAnimal::~AAnimal(void)
 	std::cout << "AAnimal destructor" << std::endl;
 }
 
-void	AAnimal::makeSound(void) const
-{
-	std::cout << "*Generic Aanimal sound*" << std::endl;
-}
-
 std::string	AAnimal::getType() const
 {
 	return(_type);

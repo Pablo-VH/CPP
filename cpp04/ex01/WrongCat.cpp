@@ -14,10 +14,11 @@
 
 WrongCat::WrongCat(void)
 {
+	this->_type = "WrongCat";
 	std::cout << "WrongCat default constructor" << std::endl;
 }
 
-WrongCat::WrongCat(const WrongCat& other)
+WrongCat::WrongCat(const WrongCat& other) : WrongAnimal(other)
 {
 	std::cout << "WrongCat copy constructor" << std::endl;
 	*this = other;
@@ -40,5 +41,5 @@ WrongCat::~WrongCat(void)
 
 void	WrongCat::makeSound(void) const
 {
-	std::cout << "*WongCat sound*" << std::endl;
+	std::cout << "Meow~?*WongCat sound*" << std::endl;
 }

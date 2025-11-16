@@ -15,7 +15,7 @@
 MateriaSource::MateriaSource(void)
 {
 	for (int i = 0; i < 4; i++)
-		_templates[i] = nullptr;
+		_templates[i] = NULL;
 }
 
 MateriaSource::MateriaSource(const MateriaSource& other)
@@ -25,7 +25,7 @@ MateriaSource::MateriaSource(const MateriaSource& other)
 		if (other._templates[i])
 			_templates[i] = other._templates[i]->clone();
 		else
-			_templates[i] = nullptr;
+			_templates[i] = NULL;
 	}
 }
 
@@ -39,7 +39,7 @@ MateriaSource& MateriaSource::operator=(const MateriaSource& other)
 			if (other._templates[i])
 				_templates[i] = other._templates[i]->clone();
 			else
-				_templates[i] = nullptr;
+				_templates[i] = NULL;
 		}
 	}
 	return (*this);
@@ -65,6 +65,7 @@ void MateriaSource::learnMateria(AMateria* m)
 		}
 	}
 	std::cout << "MateriaSource is full" << std::endl;
+	delete m;
 }
 
 AMateria* MateriaSource::createMateria(std::string const & type)
@@ -75,5 +76,5 @@ AMateria* MateriaSource::createMateria(std::string const & type)
 			return (_templates[i]->clone());
 	}
 	std::cout << "Unknown materia: " << type << std::endl;
-	return (nullptr);
+	return (NULL);
 }

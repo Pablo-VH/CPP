@@ -22,13 +22,13 @@ Cat::Cat(void)
 Cat::Cat(const Cat& other) : AAnimal(other)
 {
 	std::cout << "Cat copy constructor" << std::endl;
-	//*this = other;
 	this->_type = other._type;
 	this->brain = new Brain(*other.brain);
 }
 
 Cat&	Cat::operator=(const Cat& other)
 {
+	std::cout << "Cat copy assignment constructor" << std::endl;
 	if (this != &other)
 	{
 		AAnimal::operator=(other);
@@ -36,12 +36,12 @@ Cat&	Cat::operator=(const Cat& other)
 		delete (this->brain);
 		this->brain = new Brain(*other.brain);
 	}
-	std::cout << "Cat copy assignment constructor" << std::endl;
 	return (*this);
 }
 
 Cat::~Cat(void)
 {
+	delete this->brain;
 	std::cout << "Cat destructor" << std::endl;
 }
 

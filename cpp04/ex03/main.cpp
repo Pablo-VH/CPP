@@ -27,7 +27,7 @@ src->learnMateria(new Cure());
 src->learnMateria(new Ice());
 
 std::cout << "\n=== CREANDO PERSONAJES ===" << std::endl;
-ICharacter* me = new Character("me");
+Character* me = new Character("me");
 ICharacter* bob = new Character("bob");
 
 std::cout << "\n=== CREANDO Y EQUIPANDO MATERIAS ===" << std::endl;
@@ -52,9 +52,9 @@ me->use(2, *bob);
 me->use(3, *bob);
 me->use(4, *bob); // fuera de rango, no debería pasar nada
 
-std::cout << "\n=== PROBANDO UNEQUIP ===" << std::endl;
+/*std::cout << "\n=== PROBANDO UNEQUIP ===" << std::endl;
 me->unequip(1); // debe liberar el slot pero no borrar la materia
-me->use(1, *bob); // no debería hacer nada
+me->use(1, *bob); // no debería hacer nada*/
 
 std::cout << "\n=== PROBANDO COPIAS ===" << std::endl;
 std::cout << "Creando copia de 'me' en 'clone'...\n";

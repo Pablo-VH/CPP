@@ -20,7 +20,7 @@ Dog::Dog(void)
 
 Dog::Dog(const Dog& other) : Animal(other)
 {
-	std::cout << "Dog assignment constructor" << std::endl;
+	std::cout << "Dog copy constructor" << std::endl;
 	*this = other;
 }
 
