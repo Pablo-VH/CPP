@@ -17,7 +17,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target) : AForm(
 	std::cout << "ShrubberyCreationForm created for target: " << _target << std::endl;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other) : AForm("ShrubberyCreationForm", 145, 137), _target(other._target)
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other) : AForm(other), _target(other._target)
 {
 	std::cout << "ShrubberyCreationForm copy constructor" << std::endl;
 }
