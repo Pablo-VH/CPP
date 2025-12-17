@@ -13,6 +13,7 @@
 #include <iostream>
 #include <iostream>
 #include "Intern.hpp"
+#include "AForm.hpp"
 
 int main()
 {

@@ -17,7 +17,7 @@ PresidentialPardonForm::PresidentialPardonForm(const std::string& target) : AFor
 	std::cout << "PresidentialPardonForm created for target: " << _target << std::endl;
 }
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& other) : AForm("PresidentialPardonForm", 72, 45), _target(other._target)
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& other) : AForm(other), _target(other._target)
 {
 	std::cout << "PresidentialPardonForm copy constructor" << std::endl;
 }

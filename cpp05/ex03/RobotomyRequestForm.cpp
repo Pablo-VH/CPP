@@ -17,7 +17,7 @@ RobotomyRequestForm::RobotomyRequestForm(const std::string& target) : AForm("Rob
 	std::cout << "RobotomyRequestForm created for target: " << _target << std::endl;
 }
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other) : AForm("RobotomyRequestForm", 72, 45), _target(other._target)
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other) : AForm(other), _target(other._target)
 {
 	std::cout << "RobotomyRequestForm copy constructor" << std::endl;
 }
