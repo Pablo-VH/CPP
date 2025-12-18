@@ -98,7 +98,29 @@ void	ScalarConverter::convertFromChar(std::string const & literal)
 }
 
 void	ScalarConverter::convertFromInt(std::string const & literal)
-{}
+{
+	long	value;
+
+	value = std::strtol(literal.c_str(), NULL, 10);
+	if (value < INT_MIN || value > INT_MAX)
+	{
+		std::cout << "char: impossible" << std::endl;
+		std::cout << "int: impossible" << std::endl;
+		std::cout << "float: impossible" << std::endl;
+		std::cout << "double: impossible" << std::endl;
+		return ;
+	}
+	int	i = static_cast<int>(value);
+	if (i < 0 || i > 127)
+		std::cout << "char: impossible" << std::endl;
+	else if (!std::isprint(i))
+		std::cout << "char: Non displayable" << std::endl;
+	else
+		std::cout << "char: " << static_cast<char>(i) << std::endl;
+	std::cout << "int: " << i << std::endl;
+	std::cout << "float: " << static_cast<float>(i) << ".0f" << std::endl;
+	std::cout << "double: " << static_cast<double>(i) << ".0" << std::endl;
+}
 void	ScalarConverter::convertFromFloat(std::string const & literal)
 {}
 void	ScalarConverter::convertFromDouble(std::string const & literal)
