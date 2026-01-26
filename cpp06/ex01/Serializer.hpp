@@ -13,7 +13,7 @@
 #ifndef SERIALIZER_HPP_
 #define SERIALIZER_HPP_
 
-# include <cstdint>
+# include <stdint.h>
 # include "Data.hpp"
 
 class Serializer
