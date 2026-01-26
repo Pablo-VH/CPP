@@ -15,6 +15,9 @@
 
 # include <iostream>
 # include <cctype>
+# include <climits>
+# include <cmath>
+# include <cstdlib>
 
 enum aut_type
 {
