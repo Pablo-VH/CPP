@@ -20,7 +20,7 @@ int main()
     std::cout << "=== Testing Intern makeForm() (no assumptions about AForm internals) ===\n\n";
 
     Intern intern;
-    AForm* form = nullptr;
+    AForm* form = NULL;
 
     // Test 1
     std::cout << "[1] Requesting 'shrubbery creation'...\n";
