@@ -33,8 +33,6 @@ AForm&	AForm::operator=(const AForm& other)
 	if (this != &other)
 	{
 		this->_signed = other._signed;
-		this->_gradeReqSign = other._gradeReqSign;
-		this->_gradeReqExec = other._gradeReqExec;
 	}
 	return(*this);
 }
@@ -54,12 +52,12 @@ bool	AForm::getSigned(void) const
 	return(this->_signed);
 }
 
-int	AForm::getGradeSign(void) const
+const int	AForm::getGradeSign(void) const
 {
 	return(this->_gradeReqSign);
 }
 
-int	AForm::getGradeExec(void) const
+const int	AForm::getGradeExec(void) const
 {
 	return(this->_gradeReqExec);
 }

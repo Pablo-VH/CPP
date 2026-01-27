@@ -24,8 +24,8 @@ class AForm
 	private:
 		const std::string	_name;
 		bool				_signed;
-		int					_gradeReqSign;
-		int					_gradeReqExec;
+		const int					_gradeReqSign;
+		const int					_gradeReqExec;
 	public:
 		AForm(void);
 		AForm(std::string name, int gradeReqSign, int gradeReqExec);
@@ -34,8 +34,8 @@ class AForm
 		~AForm(void);
 		const std::string&	getName() const;
 		bool				getSigned()const;
-		int					getGradeSign() const;
-		int					getGradeExec()const;
+		const int					getGradeSign() const;
+		const int					getGradeExec()const;
 		void				beSigned(const Bureaucrat& b);
 		virtual void		execute(Bureaucrat const & executor) const = 0;
 		void				checkExecutability(const Bureaucrat& executor)const;
