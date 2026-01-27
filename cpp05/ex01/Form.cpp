@@ -33,8 +33,6 @@ Form&	Form::operator=(const Form& other)
 	if (this != &other)
 	{
 		this->_signed = other._signed;
-		this->_gradeReqSign = other._gradeReqSign;
-		this->_gradeReqExec = other._gradeReqExec;
 	}
 	return(*this);
 }
@@ -54,12 +52,12 @@ bool	Form::getSigned(void) const
 	return(this->_signed);
 }
 
-int	Form::getGradeSign(void) const
+const int	Form::getGradeSign(void) const
 {
 	return(this->_gradeReqSign);
 }
 
-int	Form::getGradeExec(void) const
+const int	Form::getGradeExec(void) const
 {
 	return(this->_gradeReqExec);
 }
