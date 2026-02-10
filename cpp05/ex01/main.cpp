@@ -21,7 +21,7 @@ int main(void)
 		Bureaucrat boss("Alice", 1);
 		Bureaucrat intern("Bob", 150);
 		Form formA("TopSecret", 50, 10);
-		Form formB("BasicPaper", 120, 100);
+		Form formB("BasicPaper", 150, 100);
 
 		std::cout << boss << std::endl;
 		std::cout << intern << std::endl;
@@ -33,6 +33,7 @@ int main(void)
 		intern.signForm(formA); // debería fallar (grade demasiado bajo)
 		boss.signForm(formA);   // debería firmarse correctamente
 		intern.signForm(formB); // debería firmarse correctamente
+		boss.signForm(formA);
 
 		std::cout << "\n--- Final status ---" << std::endl;
 		std::cout << formA << std::endl;

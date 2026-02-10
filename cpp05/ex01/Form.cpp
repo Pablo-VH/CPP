@@ -19,6 +19,10 @@ Form::Form(void) : _name("Default"), _signed(false), _gradeReqSign(150), _gradeR
 
 Form::Form(std::string name, int gradeReqSign, int gradeReqExec) : _name(name), _signed(false), _gradeReqSign(gradeReqSign), _gradeReqExec(gradeReqExec)
 {
+	if (gradeReqSign < 1 || gradeReqExec < 1)
+		throw GradeTooHighException();
+	else if (gradeReqSign > 150 || gradeReqExec >150)
+		throw GradeTooLowException();
 	std::cout << "Assignment Form constructor" << std::endl;
 }
 
@@ -52,12 +56,12 @@ bool	Form::getSigned(void) const
 	return(this->_signed);
 }
 
-const int	Form::getGradeSign(void) const
+const int&	Form::getGradeSign(void) const
 {
 	return(this->_gradeReqSign);
 }
 
-const int	Form::getGradeExec(void) const
+const int&	Form::getGradeExec(void) const
 {
 	return(this->_gradeReqExec);
 }
@@ -70,6 +74,11 @@ const char*	Form::GradeTooHighException::what() const throw()
 const char* Form::GradeTooLowException::what() const throw()
 {
 	return("the grade is too low");
+}
+
+const char* Form::IsSignedException::what() const throw()
+{
+	return("the form is signed");
 }
 
 std::ostream& operator<<(std::ostream& os, const Form& f)
@@ -86,6 +95,8 @@ std::ostream& operator<<(std::ostream& os, const Form& f)
 
 void	Form::beSigned(const Bureaucrat& b)
 {
+	if (this->_signed)
+		throw Form::IsSignedException();
 	if (b.getGrade() > this->getGradeSign())
 		throw Form::GradeTooLowException();
 	this->_signed = true;

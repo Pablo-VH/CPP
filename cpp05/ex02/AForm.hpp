@@ -34,8 +34,8 @@ class AForm
 		~AForm(void);
 		const std::string&	getName() const;
 		bool				getSigned()const;
-		const int					getGradeSign() const;
-		const int					getGradeExec()const;
+		const int&					getGradeSign() const;
+		const int&					getGradeExec()const;
 		void				beSigned(const Bureaucrat& b);
 		virtual void		execute(Bureaucrat const & executor) const = 0;
 		void				checkExecutability(const Bureaucrat& executor)const;
@@ -50,6 +50,11 @@ class AForm
 			const char*	what() const throw();
 	};
 	class FormNotSignedException : public std::exception
+	{
+		public:
+			const char*	what() const throw();
+	};
+	class IsSignedException : public std::exception
 	{
 		public:
 			const char*	what() const throw();

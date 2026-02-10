@@ -52,12 +52,12 @@ bool	AForm::getSigned(void) const
 	return(this->_signed);
 }
 
-const int	AForm::getGradeSign(void) const
+const int&	AForm::getGradeSign(void) const
 {
 	return(this->_gradeReqSign);
 }
 
-const int	AForm::getGradeExec(void) const
+const int&	AForm::getGradeExec(void) const
 {
 	return(this->_gradeReqExec);
 }
@@ -76,6 +76,10 @@ const char* AForm::FormNotSignedException::what() const throw()
 {
 	return("the form is not signed");
 }
+const char* AForm::IsSignedException::what() const throw()
+{
+	return("the form is signed");
+}
 
 std::ostream& operator<<(std::ostream& os, const AForm& f)
 {
@@ -93,6 +97,8 @@ std::ostream& operator<<(std::ostream& os, const AForm& f)
 
 void	AForm::beSigned(const Bureaucrat& b)
 {
+	if (this->_signed)
+		throw AForm::IsSignedException();
 	if (b.getGrade() > this->getGradeSign())
 		throw AForm::GradeTooLowException();
 	this->_signed = true;

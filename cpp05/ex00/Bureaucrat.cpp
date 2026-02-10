@@ -47,7 +47,7 @@ Bureaucrat::~Bureaucrat(void)
 	std::cout << "Bureaucrat destructor" << std::endl;
 }
 
-int	Bureaucrat::getGrade(void) const
+const int&	Bureaucrat::getGrade(void) const
 {
 	return (this->_grade);
 }

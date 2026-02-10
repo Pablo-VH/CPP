@@ -33,8 +33,8 @@ class Form
 		~Form(void);
 		const std::string&			getName() const;
 		bool						getSigned()const;
-		const int					getGradeSign() const;
-		const int					getGradeExec()const;
+		const int&					getGradeSign() const;
+		const int&					getGradeExec()const;
 		void						beSigned(const Bureaucrat& b);
 	class GradeTooHighException : public std::exception
 	{
@@ -42,6 +42,11 @@ class Form
 			const char*	what() const throw();
 	};
 	class GradeTooLowException : public std::exception
+	{
+		public:
+			const char*	what() const throw();
+	};
+	class IsSignedException : public std::exception
 	{
 		public:
 			const char*	what() const throw();
