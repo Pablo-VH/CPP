@@ -116,8 +116,8 @@ void	ScalarConverter::convertFromChar(std::string const & literal)
 	d = static_cast<double>(c);
 	std::cout << "char: '" << c << "'" << std::endl;
     std::cout << "int: " << i << std::endl;
-    std::cout << "float: " << f << "f" << std::endl;
-    std::cout << "double: " << d << std::endl;;
+    std::cout << "float: " << f << ".0f" << std::endl;
+    std::cout << "double: " << d << ".0" << std::endl;;
 }
 
 void	ScalarConverter::convertFromInt(std::string const & literal)
@@ -218,3 +218,18 @@ void	ScalarConverter::convertFromDouble(std::string const & literal)
 		std::cout << ".0";
 	std::cout << std::endl;
 }
+
+ScalarConverter::ScalarConverter() {}
+
+ScalarConverter::ScalarConverter(const ScalarConverter& other)
+{
+    (void)other;
+}
+
+ScalarConverter& ScalarConverter::operator=(const ScalarConverter& other)
+{
+    (void)other;
+    return *this;
+}
+
+ScalarConverter::~ScalarConverter() {}

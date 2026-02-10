@@ -45,6 +45,7 @@ class ScalarConverter
 		ScalarConverter();
 		ScalarConverter(const ScalarConverter& other);
 		ScalarConverter&	operator=(const ScalarConverter& other);
+		~ScalarConverter();
 
 		static int	detectType(std::string const & literal);
 		static int	autoDetector(int prev, int pos);
