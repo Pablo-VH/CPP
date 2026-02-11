@@ -129,16 +129,8 @@ void	ScalarConverter::convertFromInt(std::string const & literal)
 	{
 		std::cout << "char: impossible" << std::endl;
 		std::cout << "int: impossible" << std::endl;
-		float f = static_cast<float>(value);
-		double d = static_cast<double>(value);
-		std::cout << "float: " << f;
-		if (f == floor(f))
-        	std::cout << ".0";
-		std::cout << "f" << std::endl;
-		std::cout << "double: " << d;
-		if (d == floor(d))
-			std::cout << ".0";
-		std::cout << std::endl;
+		std::cout << "float: impossible" << std::endl;
+		std::cout << "double: impossible" << std::endl;
 		return ;
 	}
 	int	i = static_cast<int>(value);
@@ -176,10 +168,16 @@ void	ScalarConverter::convertFromFloat(std::string const & literal)
 		std::cout << "int: impossible" << std::endl;
 	else
 		std::cout << "int: " << static_cast<int>(value) << std::endl;
-	std::cout << "float: " << value;
-	if (value == static_cast<int>(value))
-		std::cout << ".0";
-	std::cout << "f" << std::endl;
+	if (value <= __FLT_MAX__ && value >= __FLT_MIN__)
+	{
+			std::cout << "float: " << value;
+		if (value == static_cast<int>(value))
+			std::cout << ".0";
+		std::cout << "f" << std::endl;
+	}
+	else
+		std::cout << "float: impossible" << std::endl;
+
 	std::cout << "double: " << static_cast<double>(value);
 	if (value == static_cast<int>(value))
 		std::cout << ".0";

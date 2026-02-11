@@ -16,6 +16,7 @@
 # include <iostream>
 # include <cctype>
 # include <climits>
+# include <limits>
 # include <cmath>
 # include <cstdlib>
 
