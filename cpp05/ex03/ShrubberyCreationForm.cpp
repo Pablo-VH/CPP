@@ -12,6 +12,11 @@
 
 #include "ShrubberyCreationForm.hpp"
 
+ShrubberyCreationForm::ShrubberyCreationForm() : AForm("ShrubberyCreationForm", 145, 137), _target("Default")
+{
+	std::cout << "ShrubberyCreationForm created for target: " << _target << std::endl;
+}
+
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target) : AForm("ShrubberyCreationForm", 145, 137), _target(target)
 {
 	std::cout << "ShrubberyCreationForm created for target: " << _target << std::endl;
