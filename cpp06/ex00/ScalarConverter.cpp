@@ -149,6 +149,7 @@ void	ScalarConverter::convertFromFloat(std::string const & literal)
 {
 	char	*endptr = NULL;
 	float	value = std::strtof(literal.c_str(), &endptr);
+	double	precise = std::strtod(literal.c_str(), NULL);
 
 	if (*endptr != 'f' || *(endptr + 1) != '\0')
 	{
@@ -168,20 +169,19 @@ void	ScalarConverter::convertFromFloat(std::string const & literal)
 		std::cout << "int: impossible" << std::endl;
 	else
 		std::cout << "int: " << static_cast<int>(value) << std::endl;
-	if (value <= __FLT_MAX__ && value >= __FLT_MIN__)
+	if ((value <= std::numeric_limits<float>::max() && value >= std::numeric_limits<float>::min()) && static_cast<double>(value) == precise)
 	{
-			std::cout << "float: " << value;
-		if (value == static_cast<int>(value))
-			std::cout << ".0";
+		std::cout << std::fixed << std::setprecision(1);
+		std::cout << "float: " << value;
 		std::cout << "f" << std::endl;
+		std::cout << "double: " << static_cast<double>(value);
+		std::cout << std::endl;
 	}
 	else
+	{
 		std::cout << "float: impossible" << std::endl;
-
-	std::cout << "double: " << static_cast<double>(value);
-	if (value == static_cast<int>(value))
-		std::cout << ".0";
-	std::cout << std::endl;
+		std::cout << "double: impossible" << "\n";
+	}
 }
 
 void	ScalarConverter::convertFromDouble(std::string const & literal)
@@ -207,14 +207,21 @@ void	ScalarConverter::convertFromDouble(std::string const & literal)
 		std::cout << "int: impossible" << std::endl;
 	else
 		std::cout << "int: " << static_cast<int>(value) << std::endl;
-	std::cout << "float: " << static_cast<float>(value);
-	if (value == static_cast<int>(value))
-		std::cout << ".0";
-	std::cout << "f" << std::endl;
-	std::cout << "double: " << value;
-	if (value == static_cast<int>(value))
-		std::cout << ".0";
-	std::cout << std::endl;
+	if (value <= std::numeric_limits<double>::max() && value >= std::numeric_limits<double>::min())
+	{
+		std::cout << std::fixed << std::setprecision(1);
+		float f = std::strtof(literal.c_str(), NULL);
+		if (static_cast<double>(f) == value)
+		{
+			std::cout << std::fixed << std::setprecision(1);
+			std::cout << "float: " << static_cast<float>(value);
+			std::cout << "f" << std::endl;
+		}
+		else
+			std::cout << "float: impossible" << std::endl;
+		std::cout << "double: " << value;
+		std::cout << std::endl;
+	}
 }
 
 ScalarConverter::ScalarConverter() {}

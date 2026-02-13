@@ -19,6 +19,7 @@
 # include <limits>
 # include <cmath>
 # include <cstdlib>
+# include <iomanip>
 
 enum aut_type
 {
