@@ -33,7 +33,8 @@ int	ScalarConverter::detectType(std::string const & literal)
 	int	prev;
 
 	i = 0;
-	if (literal.length() == 1 && std::isprint(literal[i]) && !std::isdigit(literal[i]))
+	if ((literal.length() == 1 && std::isprint(literal[i]) && !std::isdigit(literal[i]))
+		|| (literal.length() == 3 && literal[0] == '\'' && literal[2] == '\''))
 		return (TYPE___CHAR);
 	prev = i;
 	while (literal[i])
@@ -109,15 +110,28 @@ void	ScalarConverter::convertFromChar(std::string const & literal)
 	int		i;
 	float	f;
 	char	c;
-
-	c = literal[0];
-	i = static_cast<int>(c);
-	f = static_cast<float>(c);
-	d = static_cast<double>(c);
-	std::cout << "char: '" << c << "'" << std::endl;
-    std::cout << "int: " << i << std::endl;
-    std::cout << "float: " << f << ".0f" << std::endl;
-    std::cout << "double: " << d << ".0" << std::endl;;
+	if (literal.length() == 1)
+	{
+		c = literal[0];
+		i = static_cast<int>(c);
+		f = static_cast<float>(c);
+		d = static_cast<double>(c);
+		std::cout << "char: '" << c << "'" << std::endl;
+    	std::cout << "int: " << i << std::endl;
+    	std::cout << "float: " << f << ".0f" << std::endl;
+    	std::cout << "double: " << d << ".0" << std::endl;
+	}
+	else
+	{
+		c = literal[1];
+		i = static_cast<int>(c);
+		f = static_cast<float>(c);
+		d = static_cast<double>(c);
+		std::cout << "char: '" << c << "'" << std::endl;
+    	std::cout << "int: " << i << std::endl;
+    	std::cout << "float: " << f << ".0f" << std::endl;
+    	std::cout << "double: " << d << ".0" << std::endl;
+	}
 }
 
 void	ScalarConverter::convertFromInt(std::string const & literal)
@@ -125,6 +139,7 @@ void	ScalarConverter::convertFromInt(std::string const & literal)
 	long	value;
 
 	value = std::strtol(literal.c_str(), NULL, 10);
+	std::cout << std::fixed << std::setprecision(1);
 	if (value < INT_MIN || value > INT_MAX)
 	{
 		std::cout << "char: impossible" << std::endl;
@@ -141,15 +156,15 @@ void	ScalarConverter::convertFromInt(std::string const & literal)
 	else
 		std::cout << "char: '" << static_cast<char>(i) << "'" << std::endl;
 	std::cout << "int: " << i << std::endl;
-	std::cout << "float: " << static_cast<float>(i) << ".0f" << std::endl;
-	std::cout << "double: " << static_cast<double>(i) << ".0" << std::endl;
+	std::cout << "float: " << static_cast<float>(i) << "f" << std::endl;
+	std::cout << "double: " << static_cast<double>(i) << std::endl;
 }
 
 void	ScalarConverter::convertFromFloat(std::string const & literal)
 {
 	char	*endptr = NULL;
 	float	value = std::strtof(literal.c_str(), &endptr);
-	double	precise = std::strtod(literal.c_str(), NULL);
+	//double	precise = std::strtod(literal.c_str(), NULL);
 
 	if (*endptr != 'f' || *(endptr + 1) != '\0')
 	{
@@ -169,7 +184,7 @@ void	ScalarConverter::convertFromFloat(std::string const & literal)
 		std::cout << "int: impossible" << std::endl;
 	else
 		std::cout << "int: " << static_cast<int>(value) << std::endl;
-	if ((value <= std::numeric_limits<float>::max() && value >= std::numeric_limits<float>::min()) && static_cast<double>(value) == precise)
+	if ((value <= std::numeric_limits<float>::max() && value >= std::numeric_limits<float>::min()))
 	{
 		std::cout << std::fixed << std::setprecision(1);
 		std::cout << "float: " << value;
@@ -210,8 +225,7 @@ void	ScalarConverter::convertFromDouble(std::string const & literal)
 	if (value <= std::numeric_limits<double>::max() && value >= std::numeric_limits<double>::min())
 	{
 		std::cout << std::fixed << std::setprecision(1);
-		float f = std::strtof(literal.c_str(), NULL);
-		if (static_cast<double>(f) == value)
+		if (static_cast<float>(value) <= std::numeric_limits<float>::max() && static_cast<float>(value) <= std::numeric_limits<float>::min())
 		{
 			std::cout << std::fixed << std::setprecision(1);
 			std::cout << "float: " << static_cast<float>(value);

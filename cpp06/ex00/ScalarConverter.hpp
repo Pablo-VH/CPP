@@ -29,7 +29,8 @@ enum aut_type
 	AUT_CHR,
 	AUT_FFF,
 	AUT_POI,
-	AUT_DEC
+	AUT_DEC,
+	AUT_COM
 };
 
 enum e_type
