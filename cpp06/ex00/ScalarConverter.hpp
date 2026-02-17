@@ -54,8 +54,8 @@ class ScalarConverter
 		static int	autoDetector(int prev, int pos);
 		static void	convertFromChar(std::string const & literal);
 		static void	convertFromInt(std::string const & literal);
-		static void	convertFromFloat(std::string const & literal);
-		static void	convertFromDouble(std::string const & literal);
+		static void	convertFromFloat(std::string const & literal, size_t precision);
+		static void	convertFromDouble(std::string const & literal, size_t precision);
 	public:
 		static void	convert(std::string const & literal);
 };
