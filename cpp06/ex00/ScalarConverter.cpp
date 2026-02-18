@@ -83,8 +83,10 @@ void	ScalarConverter::convert(std::string const & literal)
 		return ;
 	}
 	type = ScalarConverter::detectType(literal);
-	dec = literal.size() - literal.find(".", 0);
-	std::cout << dec - 1 << "\n";
+	if  (literal[literal.size() - 1] != '0')
+		dec = literal.size() - literal.find(".", 0) - 1;
+	else
+		dec = 1;
 	switch (type)
 	{
 	case TYPE__ERROR:
@@ -164,98 +166,118 @@ void	ScalarConverter::convertFromInt(std::string const & literal)
 	if (static_cast<int>(f) == value)
 		std::cout << "float: " << static_cast<float>(i) << "f" << std::endl;
 	else
-		std::cout << "float: impossible" << std::endl;
+		std::cout << "float: impossible (precision loss)" << std::endl;
 	std::cout << "double: " << static_cast<double>(i) << std::endl;
 }
 
 void	ScalarConverter::convertFromFloat(std::string const & literal,  size_t	precision)
 {
-	char	*endptr = NULL;
-	float	value = std::strtof(literal.c_str(), &endptr);
-	double	precise = std::strtod(literal.c_str(), NULL);
+    char	*endptr = NULL;
+    float	value = std::strtof(literal.c_str(), &endptr);
+    long double	orig = std::strtold(literal.c_str(), NULL);
 
-	if (*endptr != 'f' || *(endptr + 1) != '\0')
-	{
-		std::cout << "char: impossible" << std::endl;
-		std::cout << "int: impossible" << std::endl;
-		std::cout << "float: impossible" << std::endl;
-		std::cout << "double: impossible" << std::endl;
-		return ;
-	}
-	if (std::isnan(value) || value < 0 || value > 127)
-		std::cout << "char: impossible" << std::endl;
-	else if (!std::isprint(static_cast<int>(value)))
-		std::cout << "char: Non displayable" << std::endl;
-	else
-		std::cout << "char: '" << static_cast<char>(value) << "'" << std::endl;
-	if (!std::isnan(value))
-		std::cout << std::fixed << std::setprecision(precision);
-	if (((std::isnan(value)) || std::isinf(value)) || ((precise == static_cast<double>(value)) && (value <= std::numeric_limits<float>::max() && value >= -std::numeric_limits<float>::max())))
-	{
-		
-		if (std::isnan(value) || value < static_cast<float>(INT_MIN) || value > static_cast<float>(INT_MAX))
-			std::cout << "int: impossible" << std::endl;
-		else
-			std::cout << "int: " << static_cast<int>(value) << std::endl;
-		std::cout << "float: " << value;
-		std::cout << "f" << std::endl;
-		std::cout << "double: " << static_cast<double>(value);
-		std::cout << std::endl;
-	}
-	else
-	{
-		std::cout << "int: impossible" << std::endl;
-		std::cout << "float: impossible" << std::endl;
-		std::cout << "double: impossible" << "\n";
-	}
+    if (*endptr != 'f' || *(endptr + 1) != '\0')
+    {
+        std::cout << "char: impossible" << std::endl;
+        std::cout << "int: impossible" << std::endl;
+        std::cout << "float: impossible" << std::endl;
+        std::cout << "double: impossible" << std::endl;
+        return ;
+    }
+
+    if (std::isnan(value) || value < 0 || value > 127)
+        std::cout << "char: impossible" << std::endl;
+    else if (!std::isprint(static_cast<int>(value)))
+        std::cout << "char: Non displayable" << std::endl;
+    else
+        std::cout << "char: '" << static_cast<char>(value) << "'" << std::endl;
+
+    if (!std::isnan(value))
+        std::cout << std::fixed << std::setprecision(precision);
+
+    long double f_ld = static_cast<long double>(value);
+    long double tol = 0.5L * powl(10.0L, -static_cast<long double>(precision));
+
+    bool float_ok = (std::isnan(value) || std::isinf(value)) ||
+        (fabsl(f_ld - orig) <= tol &&
+         value <= std::numeric_limits<float>::max() &&
+         value >= -std::numeric_limits<float>::max());
+
+    long double d_from_f_ld = static_cast<long double>(static_cast<double>(value));
+    bool double_ok = (std::isnan(value) || std::isinf(value)) ||
+        (fabsl(d_from_f_ld - orig) <= tol);
+
+    if (std::isnan(value) || value < static_cast<float>(INT_MIN) || value > static_cast<float>(INT_MAX))
+        std::cout << "int: impossible" << std::endl;
+    else
+        std::cout << "int: " << static_cast<int>(value) << std::endl;
+
+    if (float_ok)
+        std::cout << "float: " << value << "f" << std::endl;
+    else
+        std::cout << "float: impossible (precision loss)" << std::endl;
+
+    if (double_ok)
+        std::cout << "double: " << static_cast<double>(value) << std::endl;
+    else
+        std::cout << "double: impossible (precision loss)" << std::endl;
 }
 
 void	ScalarConverter::convertFromDouble(std::string const & literal, size_t	precision)
 {
-	char	*endptr = NULL;
-	double	value = std::strtod(literal.c_str(), &endptr);
-	float	f = std::strtof(literal.c_str(), NULL);
-	long double ld = std::strtold(literal.c_str(), NULL);
+    char	*endptr = NULL;
+    double	value = std::strtod(literal.c_str(), &endptr);
+    long double	orig = std::strtold(literal.c_str(), NULL);
 
-	if (*endptr != '\0')
-	{
-		std::cout << "char: impossible" << std::endl;
-		std::cout << "int: impossible" << std::endl;
-		std::cout << "float: impossible" << std::endl;
-		std::cout << "double: impossible" << std::endl;
-		return ;
-	}
-	if (std::isnan(value) || value < 0 || value > 127)
-		std::cout << "char: impossible" << std::endl;
-	else if (!std::isprint(static_cast<int>(value)))
-		std::cout << "char: Non displayable" << std::endl;
-	else
-		std::cout << "char: '" << static_cast<char>(value) << "'" << std::endl;
-	if (std::isnan(value) || std::isinf(value) || value < INT_MIN || value > INT_MAX)
-		std::cout << "int: impossible" << std::endl;
-	else
-		std::cout << "int: " << static_cast<int>(value) << std::endl;
-	if (((std::isinf(value) || std::isnan(value))) || (value <= std::numeric_limits<double>::max() && value >= std::numeric_limits<double>::min()))
-	{
-		if (precision >= 1)
-			std::cout << std::fixed << std::setprecision(precision);
-		else
-			std::cout << std::fixed << std::setprecision(1);
-		if (((std::isinf(value) || std::isnan(value))) || ((ld == static_cast<long double>(value)) && ((value == static_cast<double>(f)) && ((static_cast<float>(value) <= std::numeric_limits<float>::max() && static_cast<float>(value) >= -std::numeric_limits<float>::max())))))
-		{
-			std::cout << std::fixed << std::setprecision(1);
-			std::cout << "float: " << static_cast<float>(value);
-			std::cout << "f" << std::endl;
-		}
-		else
-			std::cout << "float: impossible" << std::endl;
-		if ((std::isinf(value) || std::isnan(value)) || ld == static_cast<long double>(value))
-			std::cout << "double: " << value;
-		else
-			std::cout << "double: impossible";
-		std::cout << std::endl;
-	}
+    if (*endptr != '\0')
+    {
+        std::cout << "char: impossible" << std::endl;
+        std::cout << "int: impossible" << std::endl;
+        std::cout << "float: impossible" << std::endl;
+        std::cout << "double: impossible" << std::endl;
+        return ;
+    }
+    if (std::isnan(value) || value < 0 || value > 127)
+        std::cout << "char: impossible" << std::endl;
+    else if (!std::isprint(static_cast<int>(value)))
+        std::cout << "char: Non displayable" << std::endl;
+    else
+        std::cout << "char: '" << static_cast<char>(value) << "'" << std::endl;
+
+    if (std::isnan(value) || std::isinf(value) || value < static_cast<double>(INT_MIN) || value > static_cast<double>(INT_MAX))
+        std::cout << "int: impossible" << std::endl;
+    else
+        std::cout << "int: " << static_cast<int>(value) << std::endl;
+    if (precision >= 1)
+        std::cout << std::fixed << std::setprecision(precision);
+    else
+        std::cout << std::fixed << std::setprecision(1);
+
+    long double d_ld = static_cast<long double>(value);
+    float f = static_cast<float>(value);
+    long double f_ld = static_cast<long double>(f);
+
+    long double tol = 0.5L * powl(10.0L, -static_cast<long double>(precision));
+
+    bool double_ok = (std::isnan(value) || std::isinf(value)) ||
+        (fabsl(d_ld - orig) <= tol);
+
+    bool float_ok = (std::isnan(value) || std::isinf(value)) ||
+        (fabsl(f_ld - orig) <= tol &&
+         f <= std::numeric_limits<float>::max() &&
+         f >= -std::numeric_limits<float>::max());
+
+    if (float_ok)
+        std::cout << "float: " << f << "f" << std::endl;
+    else
+        std::cout << "float: impossible (precision loss)" << std::endl;
+
+    if (double_ok)
+        std::cout << "double: " << value << std::endl;
+    else
+        std::cout << "double: impossible (precision loss)" << std::endl;
 }
+
 
 ScalarConverter::ScalarConverter() {}
 
