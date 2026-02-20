@@ -18,6 +18,11 @@ void increment(int &n)
 	n++;
 }
 
+int increment1(int &n)
+{
+	return n++;
+}
+
 // Función solo lectura
 void printInt(int const &n)
 {
@@ -45,6 +50,9 @@ int main()
 	
 	const int constArr[] = {10, 20, 30};
 	iter(constArr, 3, printInt);
+	int i = increment1(arr[1]);
+	std::cout << i << "\n";
+
 
 	return 0;
 }

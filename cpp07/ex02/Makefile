@@ -1,7 +1,9 @@
 NAME = array
 
 CXX = c++
-CXXFLAGS = -Wall -Werror -Wextra -std=c++98
+#CXX = clang++
+CXXFLAGS = -Wall -Werror -Wextra -std=c++98 \
+	#-fsanitize=address,undefined -fno-omit-frame-pointer -pedantic -Wshadow -g2 
 
 SRCS = main.cpp
 OBJS = $(SRCS:.cpp=.o)

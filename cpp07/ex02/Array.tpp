@@ -20,8 +20,17 @@ Array<T>::Array() : _data(NULL), _size(0)
 {}
 
 template <typename T>
-Array<T>::Array(unsigned int n) : _data(new T[n]()), _size(n)
-{}
+Array<T>::Array(unsigned int n)
+{
+	int	newSize = (int)n;
+	if (newSize <= 0)
+	{
+		_data = NULL;
+		return;
+	}
+	_data = new T[n]();
+	_size = n;
+}
 
 template <typename T>
 Array<T>::Array(const Array& other) : _data(NULL), _size(other._size)
@@ -46,7 +55,7 @@ Array<T>& Array<T>::operator=(const Array& other)
 	{
 		unsigned int	i = 0;
 		delete[] _data;
-		_size = other.size;
+		_size = other._size;
 		if (_size > 0)
 			_data = new T[_size];
 		else
