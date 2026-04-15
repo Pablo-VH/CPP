@@ -10,11 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include "Array.hpp"
-
-#include <iostream>
 #include <string>
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
 #include "Array.hpp"
 
 int main()

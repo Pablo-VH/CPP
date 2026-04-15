@@ -79,7 +79,7 @@ template <typename T>
 T& Array<T>::operator[](unsigned int index)
 {
 	if (index >= _size)
-		throw std::exception();
+		throw IndexOutOfBounds();
 	return (_data[index]);
 }
 
@@ -87,7 +87,7 @@ template <typename T>
 const T& Array<T>::operator[](unsigned int index) const
 {
 	if (index >= _size)
-		throw std::exception();
+		throw IndexOutOfBounds();
 	return (_data[index]);
 }
 
