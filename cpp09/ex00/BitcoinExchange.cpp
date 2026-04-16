@@ -25,3 +25,8 @@ const char* InvalidContentFile::what() const throw()
 {
 	return ("Invalid content file");
 }
+
+const char* InvalidDate::what() const throw()
+{
+	return ("Invalid date");
+}

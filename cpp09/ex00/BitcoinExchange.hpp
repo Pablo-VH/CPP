@@ -14,6 +14,7 @@ class BitcoinExchange
 private:
 	//std::map<std::string, double>	_pair;
 	std::string						_content;
+	std::string						_key;
 public:
 	BitcoinExchange(void);
 	BitcoinExchange(char *file);
@@ -21,6 +22,12 @@ public:
 
 };
 class InvalidContentFile : public std::exception
+{
+	public:
+		const char* what() const throw();
+};
+
+class InvalidDate : public std::exception
 {
 	public:
 		const char* what() const throw();
