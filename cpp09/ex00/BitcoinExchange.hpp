@@ -6,6 +6,8 @@
 # include <iostream>
 # include <sstream>
 # include <algorithm>
+# include <string>
+# include <stdexcept>
 
 class BitcoinExchange
 {
@@ -17,14 +19,14 @@ public:
 	BitcoinExchange(char *file);
 	~BitcoinExchange(void);
 
-	class InvalidContentFile : public std::exception
-	{
-		public:
-			const char* what() const throw();
-	};
+};
+class InvalidContentFile : public std::exception
+{
+	public:
+		const char* what() const throw();
 };
 
-void	tokenize(std::string tokens);
+void	tokenize(std::string& tokens);
 
 #endif
 

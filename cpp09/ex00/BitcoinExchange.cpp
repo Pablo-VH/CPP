@@ -21,7 +21,7 @@ BitcoinExchange::~BitcoinExchange()
 {
 }
 
-const char* BitcoinExchange::InvalidContentFile::what() const throw()
+const char* InvalidContentFile::what() const throw()
 {
 	return ("Invalid content file");
 }
