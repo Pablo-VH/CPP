@@ -9,6 +9,12 @@ int	main(int argc, char **argv)
 	}
 	try{
 	BitcoinExchange	pg(argv[1]);
+	std::cout << "_inputFile\n";
+	for (std::multimap<std::string, double>::iterator it = pg.getInput().begin(); it != pg.getInput().end(); ++it)
+		std::cout << "Date: " << it->first << " Amount: " << it->second << std::endl;
+	std::cout << "\n_csv:\n";
+	for (std::map<std::string, double>::iterator it = pg.getCsv().begin(); it != pg.getCsv().end(); ++it)
+		std::cout << "Date: " << it->first << " Amount: " << it->second << std::endl;
 	}
 	catch (std::exception& e)
 	{

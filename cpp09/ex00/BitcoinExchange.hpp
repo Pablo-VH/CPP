@@ -8,18 +8,27 @@
 # include <algorithm>
 # include <string>
 # include <stdexcept>
+# include "utils.hpp"
+
 
 class BitcoinExchange
 {
 private:
-	//std::map<std::string, double>	_pair;
-	std::string						_content;
-	std::string						_key;
+	std::multimap<std::string, double>	_input;
+	std::map<std::string, double>		_csv;
+	std::string							_content;
+	std::string							_key;
 public:
 	BitcoinExchange(void);
 	BitcoinExchange(char *file);
 	~BitcoinExchange(void);
 
+	void	tokenize(std::string& tokens, char split);
+	void	checkLine(std::string& line, char split);
+	void	setInput(std::string& key, double value);
+	void	setCsv(std::string& key, double value);
+	std::multimap<std::string, double>&	getInput();
+	std::map<std::string, double>&	getCsv();
 };
 class InvalidContentFile : public std::exception
 {
@@ -33,7 +42,11 @@ class InvalidDate : public std::exception
 		const char* what() const throw();
 };
 
-void	tokenize(std::string& tokens);
+class FailOpeningFile : public std::exception
+{
+	public:
+		const char* what() const throw();
+};
 
 #endif
 

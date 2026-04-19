@@ -1,4 +1,4 @@
-#include "BitcoinExchange.hpp"
+#include "utils.hpp"
 
 std::string rtrim(std::string& line)
 {
@@ -13,7 +13,7 @@ std::string rtrim(std::string& line)
     return (line.substr(0, end + 1));
 }
 
-static std::string trim(std::string& line)
+std::string trim(std::string& line)
 {
     size_t i = 0;
 
@@ -45,7 +45,7 @@ static int	chooseTopState(int prev, int pos)
 	return (matrix[prev][pos]);
 }
 
-static void	checkTop(std::string& line)
+void	checkTop(std::string& line)
 {
 	int	state;
 	int	prev = 0;
@@ -79,6 +79,77 @@ static void	checkTop(std::string& line)
 	}
 }
 
+static int	chooseTopStateCsv(int prev, int pos)
+{
+	static int matrix[][15] = {
+		{1, 2,  1,  1,   1, 1, 1, 1,  1,  1,  1,  1,  1}, //0 INI
+		{1, 1,  1,  1,   1, 1, 1, 1,  1,  1,  1,  1,  1}, //1 ERR
+		{1, 1,  3,  1,   1, 1, 1, 1,  1,  1,  1,  1,  1}, //2 D
+		{1, 1,  1,  4,   1, 1, 1, 1,  1,  1,  1,  1,  1}, //3 A
+		{1, 1,  1,  1,   5, 1, 1, 1,  1,  1,  1,  1,  1}, //4 T
+		{1, 1,  1,  1,   1, 6, 1, 1,  1,  1,  1,  1,  1}, //5 E
+		{1, 1,  1,  1,   7, 1, 1, 1,  1,  1,  1,  1,  1}, //6 ,
+		{1, 1,  1,  1,   1, 1, 8, 1,  1,  1,  1,  1,  1}, //7 E
+		{1, 1,  1,  1,   1, 1, 1, 9,  1,  1,  1,  1,  1}, //8 X
+		{1, 1,  1,  1,   1, 1, 1, 1, 10,  1,  1,  1,  1}, //9 C
+		{1, 1, 11,  1,   1, 1, 1, 1,  1,  1,  1,  1,  1}, //10 H
+		{1, 1,  1,  1,   1, 1, 1, 1,  1, 12,  1,  1,  1}, //11 A
+		{1, 1,  1,  1,   1, 1, 1, 1,  1,  1, 13,  1,  1}, //12 N
+		{1, 1,  1,  1,  14, 1, 1, 1,  1,  1,  1,  1,  1}, //13 G
+		{1, 1,  1,  1,   1, 1, 1, 1,  1,  1,  1, 15,  1}, //14 E
+		{1, 1,  1,  1,   1, 1, 1, 1,  1,  1,  1,  1, 16}, //15 _
+		{1, 1, 17,  1,   1, 1, 1, 1,  1,  1,  1,  1,  1}, //16 R
+		{1, 1,  1, 18,   1, 1, 1, 1,  1,  1,  1,  1,  1}, //17 A
+		{1, 1,  1,  1,  19, 1, 1, 1,  1,  1,  1,  1,  1}, //18 T
+		{1, 1,  1,  1,   1, 1, 1, 1,  1,  1,  1,  1,  1}, //19 E
+	//	err d   a   t    e  ,  x  c   h   n   g   _   r
+//pos =  0  1   2   3    4  5  6  7   8   9  10  11  12
+	};
+	return (matrix[prev][pos]);
+}
+
+void	checkTopCsv(std::string& line)
+{
+	int	state;
+	int	prev = 0;
+	for (std::string::iterator it = line.begin(); it != line.end(); ++it)
+	{
+		state = 0;
+		if (*it == 'd' || *it == 'D')
+			state = 1;
+		else if (*it == 'a' || *it == 'A')
+			state = 2;
+		else if (*it == 't' || *it == 'T')
+			state = 3;
+		else if (*it == 'e' || *it == 'E')
+			state = 4;
+		else if (*it == ',')
+			state = 5;
+		else if (*it == 'x' || *it == 'X')
+			state = 6;
+		else if (*it == 'c' || *it == 'C')
+			state = 7;
+		else if (*it == 'h' || *it == 'H')
+			state = 8;
+		else if (*it == 'n' || *it == 'N')
+			state = 9;
+		else if (*it == 'g' || *it == 'G')
+			state = 10;
+		else if (*it == '_')
+			state = 11;
+		else if (*it == 'r' || *it == 'R')
+			state = 12;
+		else if (std::isspace(*it) && (prev == 5 || prev == 6))
+			continue;
+		prev = chooseTopStateCsv(prev, state);
+		if (prev == 1)
+		{
+			std::cout << *it << std::endl;
+			throw InvalidContentFile();
+		}
+	}
+}
+
 static bool	checkYear(int year, std::string& str)
 {
 	if (year < 0 || str.length() > 4)
@@ -98,9 +169,9 @@ static void	checkMD(int day, int month, bool leapYear)
 		std::cout << "aqui1\n";
 		throw InvalidDate();
 	}
-	if ((day == 31 && ((month < 7 && month % 2 == 0) || (month > 6 && month % 2 != 0))) || (month == 2 && day > 29))
+	if ((day == 31 && ((month < 8 && month % 2 == 0) || (month > 7 && month % 2 != 0))) || (month == 2 && day > 29))
 	{
-		std::cout << "aqui\n";
+		std::cout << day << " " << month << "aqui\n";
 		throw InvalidDate();
 	}
 	if (leapYear == false && (month == 2 && day == 29))
@@ -110,7 +181,7 @@ static void	checkMD(int day, int month, bool leapYear)
 	}
 }
 
-static void checkDate(std::string& date)
+void checkDate(std::string& date)
 {
 	std::stringstream	ss;
 	int					auxNum;
@@ -165,100 +236,4 @@ static void checkDate(std::string& date)
 		throw InvalidDate();
 	}
 	checkMD(day, auxNum, leapYear);
-}
-
-static void	checkLine(std::string& line)
-{
-	static int	i = 0;
-	std::stringstream	ss;
-	std::stringstream	ss2;
-	std::string			numstr;
-	std::string			key;
-	double				value;
-	line = trim(line);
-	line = rtrim(line);
-	if (i == 0)
-	{
-		i++;
-		return (checkTop(line));
-	}
-	if (line[4] != '-' || line[7] != '-')
-		throw InvalidContentFile();
-	int	j = 0;
-	std::string::iterator it = line.begin();
-	std::string::iterator end = line.end();
-	while (it != end)
-	{
-		if (!std::isdigit(*it) && (j != 4 && j != 7) && (j < 10))
-			throw std::exception();
-		if (*it == '|')
-			break ;
-		j++;
-		ss << *it;
-		++it;
-	}
-	key = ss.str();
-	checkDate(key);
-	ss.str("");
-	ss.clear();
-	if (*it == '|')
-		++it;
-	bool	nums = false;
-	while (it != end && std::isspace(*it))
-		++it;
-	while (it != end)
-	{
-		if (*it == '.')
-		{
-			ss << *it;
-			++it;
-		}
-		while (it != end && std::isdigit(*it))
-		{
-			nums = true;
-			ss << *it;
-			++it;
-		}
-		if (*it == '-' || std::isspace(*it))
-			throw InvalidContentFile();
-	}
-	if (it != end || nums == false)
-		throw InvalidContentFile();
-	numstr = ss.str();
-	ss >> value;	
-	if (value < 0 || value > 1000)
-		throw InvalidContentFile();
-}
-
-void	tokenize(std::string& tokens)
-{
-	std::stringstream ss;
-	std::string	line;
-	for (std::string::iterator it = tokens.begin(); it != tokens.end(); ++it)
-	{
-		if (*it == '\n')
-		{
-			if (!line.empty())
-				line.erase();
-			ss << *it;
-			line = ss.str();
-			if (line == "\n")
-				continue;
-			checkLine(line);
-			ss.str("");
-			ss.clear();
-		}
-		else if(it == tokens.end() -1)
-		{
-			if (!line.empty())
-				line.erase();
-			ss << *it;
-			line = ss.str();
-			checkLine(line);
-			ss.str("");
-			ss.clear();
-		}
-		else
-			ss << *it;
-	}
 }
