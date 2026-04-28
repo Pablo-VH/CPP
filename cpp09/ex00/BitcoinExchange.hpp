@@ -20,15 +20,16 @@ private:
 	std::string							_key;
 public:
 	BitcoinExchange(void);
-	BitcoinExchange(char *file);
+	//BitcoinExchange(char *file);
 	~BitcoinExchange(void);
 
 	void	tokenize(std::string& tokens, char split);
 	void	checkLine(std::string& line, char split);
 	void	setInput(std::string& key, double value);
 	void	setCsv(std::string& key, double value);
+	void	calculate(char *file);
 	std::multimap<std::string, double>&	getInput();
-	std::map<std::string, double>&	getCsv();
+	std::map<std::string, double>&		getCsv();
 };
 class InvalidContentFile : public std::exception
 {
