@@ -36,6 +36,23 @@ BitcoinExchange::BitcoinExchange(void)
 	buffer.clear();
 }
 
+BitcoinExchange::BitcoinExchange(const BitcoinExchange& other)
+{
+	*this = other;
+}
+
+BitcoinExchange&	BitcoinExchange::operator=(const BitcoinExchange& other)
+{
+	if (this != &other)
+	{
+		_input = other._input;
+		_csv = other._csv;
+		_content = other._content;
+		_key = other._key;
+	}
+	return (*this);
+}
+
 BitcoinExchange::~BitcoinExchange()
 {
 }

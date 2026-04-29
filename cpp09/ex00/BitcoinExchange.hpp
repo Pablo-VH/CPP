@@ -20,6 +20,8 @@ private:
 	std::string							_key;
 public:
 	BitcoinExchange(void);
+	BitcoinExchange(const BitcoinExchange& other);
+	BitcoinExchange&	operator=(const BitcoinExchange& other);
 	//BitcoinExchange(char *file);
 	~BitcoinExchange(void);
 
