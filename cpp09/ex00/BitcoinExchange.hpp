@@ -8,7 +8,6 @@
 # include <algorithm>
 # include <string>
 # include <stdexcept>
-# include "utils.hpp"
 
 
 class BitcoinExchange
@@ -25,11 +24,11 @@ public:
 	//BitcoinExchange(char *file);
 	~BitcoinExchange(void);
 
-	void	tokenize(std::string& tokens, char split);
-	void	checkLine(std::string& line, char split);
-	void	setInput(std::string& key, double value);
-	void	setCsv(std::string& key, double value);
-	void	calculate(char *file);
+	void		tokenize(std::string& tokens, char split);
+	void		checkLine(std::string& line, char split);
+	void		setInput(std::string& key, double value);
+	void		setCsv(std::string& key, double value);
+	void		calculate(char *file);
 	std::multimap<std::string, double>&	getInput();
 	std::map<std::string, double>&		getCsv();
 };
@@ -50,7 +49,11 @@ class FailOpeningFile : public std::exception
 	public:
 		const char* what() const throw();
 };
-
+	std::string rtrim(std::string& line);
+	std::string trim(std::string& line);
+	void		checkDate(std::string& date);
+	void		checkTop(std::string& line);
+	void		checkTopCsv(std::string& line);
 #endif
 
 /*Ejercicio 00: Bitcoin Exchange
