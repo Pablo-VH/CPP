@@ -63,3 +63,6 @@ Warning: The container(s) you used in the previous exercises are
 forbidden here.
 The management of errors related to duplicates is left to your
 discretion.
+
+Usa dos contenedores distintos: std::vector<int> y std::deque<int>.
+Motivo: el enunciado pide al menos dos contenedores y comparar tiempos; ambos tienen acceso aleatorio, lo que facilita mucho Ford-Johnson y la medición de rendimiento.
