@@ -70,6 +70,11 @@ bool	takeNums(char *str)
 				nums.pop_back();
 				int a = nums.back();
 				nums.pop_back();
+				if (str[i] == '/' && b == 0)
+				{
+					std::cerr << "Undefined\n";
+					return (false);
+				}
 				int result = operate(a, b, str[i]);
 				nums.push_back(result);
 			}
@@ -77,7 +82,10 @@ bool	takeNums(char *str)
 		i++;
 	}
 	if (nums.size() > 1)
+	{
+		std::cerr << "Invalid input\n";
 		return (false);
+	}
 	std::cout << "result: " << nums.back() << std::endl;
 	return (true);
 }
@@ -86,7 +94,6 @@ bool	reversePolishNotation(char *str)
 {
 	if (!parseStr(str) || !takeNums(str))
 	{
-		std::cerr << "Invalid input\n";
 		return (false);
 	}
 	return (true);
